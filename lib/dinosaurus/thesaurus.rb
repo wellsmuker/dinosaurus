@@ -31,7 +31,8 @@ module Dinosaurus
     def self.url_for(word)
       key = Dinosaurus.configuration.api_key
       raise MissingApiKeyError unless key
-      URI.encode("/api/2/" + key + '/' + word + '/json')
+      # CGI.escape("/api/2/" + key + '/' + word + '/json')
+      "/api/2/" + key + "/" + "#{CGI.escape(word)}" + "/json"
     end
   end
 end
